@@ -49,8 +49,6 @@ def obtain_rules(data, min_support, max_len=None):
     return frequent_sets, interesting_rules
 
 def plot_word_freq(sets_df, word):
-    fig = plt.figure()
-    ax = fig.add_subplot()
     supports = []
     for set_df in sets_df:
         found=False
@@ -62,7 +60,7 @@ def plot_word_freq(sets_df, word):
         if found == False:
             supports.append(0)
 
-    supports_df = pd.DataFrame({'day': range(1,6), 'support' : supports})
+    supports_df = pd.DataFrame({'support' : supports})
     #print(supports_df)
     #supports_df.plot(kind='bar', ax=ax)
     return supports_df

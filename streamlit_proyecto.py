@@ -74,6 +74,7 @@ if seccion == 'Exploracion':
     ax = fig.add_subplot()
     data_freq = data[['Class Name']].copy()
     vals = data_freq.value_counts()
+    print(vals)
     vals.plot(kind='bar', ax=ax)
     st.write(fig)
     
@@ -94,15 +95,20 @@ elif seccion == 'Reglas de Asociacion':
     
     st.write('Gracias a A priori y las reglas de asociacion, es posible ver el cambio de frecuencia de una palabra dependiendo de la calificacion')
     
-    #rating = int(st.radio('Calificacion', ('1', '2', '3', '4', '5')))
+    rating = int(st.radio('Calificacion', ('1', '2', '3', '4', '5')))
     
-    #fig = rule_heatmap(rules_df, sets_df, rating)
-    #st.write(fig)
-    
-    #word = st.text_input('Palabra a buscar...', 'love')
-    supports_df = plot_word_freq(sets_df, 'love')
-    fig=plt.figure()
-    ax = fig.add_subplot()
-    supports_df.plot.bar(ax=ax)
+    fig = rule_heatmap(rules_df, sets_df, rating)
     st.write(fig)
+    
+    word = st.text_input('Palabra a buscar...', 'love')
+    fig = plt.figure()
+    ax = fig.add_subplot()
+    supports_df = plot_word_freq(sets_df, word)
+    supports_vals = supports_df.values.T[0]
+    #print(supports_vals)
+    plt.plot(range(1,6), supports_vals, '-o')
+    plt.xticks(range(1,6))
+    plt.xlabel('Calificacion del articulo')
+    plt.ylabel('Soporte')
+    st.pyplot(fig)
     
