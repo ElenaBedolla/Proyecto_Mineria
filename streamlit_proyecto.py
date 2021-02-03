@@ -33,6 +33,8 @@ from streamlit_preprocesamiento import *
 from kmeans import *
 from reglas import *
 
+nltk.download()
+
 nltk.download('stopwords')
 nltk.download('wordnet')
 
