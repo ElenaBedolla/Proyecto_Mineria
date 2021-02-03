@@ -28,6 +28,9 @@ from matplotlib import cm
 
 import matplotlib.pyplot as plt
 
+nltk.download()
+nltk.download('stopwords')
+
 stopwords = nltk.corpus.stopwords.words('english')
 
 def quitar_puntuacion(x):
